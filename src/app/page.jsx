@@ -30,7 +30,6 @@ export default function LandingPage() {
           >
             Sign Up
           </button>
-          <CountryCodeDropdown />
         </div>
       </section>
   );

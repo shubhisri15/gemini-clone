@@ -27,7 +27,9 @@ export default function RootLayout({ children }) {
             <div className="absolute -top-40 -left-40 w-96 h-96 bg-blue-500/30 rounded-full blur-3xl animate-pulse"></div>
             <div className="absolute -bottom-40 -right-40 w-96 h-96 bg-purple-500/30 rounded-full blur-3xl animate-pulse"></div>
           </div>
-          {children}
+          <div className='relative z-50'>
+            {children}
+          </div>
           <footer className="absolute bottom-6 text-sm text-gray-500">
             © {new Date().getFullYear()} ConverzAI (Gemini Clone) | Built by Shubhi Srivastava
           </footer>
