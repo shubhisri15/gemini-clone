@@ -1,9 +1,10 @@
 'use client'
-import React from 'react'
+import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { phoneSchema } from '@/schemas/phone-schema'
 import CountryCodeDropdown from '@/components/CountryCodeDropdown'
+import OTPForm from '@/components/OTPForm'
 
 const LoginForm = () => {
   const { register, handleSubmit, formState: { errors } } = useForm({
@@ -14,18 +15,23 @@ const LoginForm = () => {
     }
   })
 
+  const [showOtp, setShowOtp] = useState(false)
+
+
   const onSubmit = (data) => {
     console.log("Form submitted:", data)
+    setShowOtp(true)
   }
 
+
   return (  
-      <div className="w-full max-w-2xl p-8 bg-gray-800/90 rounded-2xl shadow-2xl flex flex-col gap-6 items-center">
+      <div className="w-2xl p-8 bg-gray-800/90 rounded-2xl shadow-2xl flex flex-col gap-6 items-center">
         <h1 className="text-3xl font-extrabold text-white text-center">Welcome Back!</h1>
 
-        <form onSubmit={handleSubmit(onSubmit)} className="w-full flex flex-col gap-4">
+        {showOtp ? <OTPForm size={6}/> : (<form onSubmit={handleSubmit(onSubmit)} className="w-full flex flex-col gap-4">
           <div className="flex gap-4 sm:flex-row">
             <div className="flex flex-col flex-1">
-              <CountryCodeDropdown {...register('countryCode')} />
+              <CountryCodeDropdown register={register} error={errors.countryCode} />
               {errors.countryCode && <span className="text-red-400 text-sm mt-1">{errors.countryCode.message}</span>}
             </div>
 
@@ -46,7 +52,7 @@ const LoginForm = () => {
           >
             Send OTP
           </button>
-        </form>
+        </form>)}
 
         <p className="text-gray-300 text-sm mt-2 text-center">
           By continuing, you agree to our <span className="text-purple-400 underline cursor-pointer">Terms of Service</span> & <span className="text-purple-400 underline cursor-pointer">Privacy Policy</span>

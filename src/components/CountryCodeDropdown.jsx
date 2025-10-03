@@ -1,9 +1,10 @@
 'use client'
 
 import useCountriesInfo from '@/hooks/useCountriesInfo'
+import { register } from 'next/dist/next-devtools/userspace/pages/pages-dev-overlay-setup'
 import React from 'react'
 
-const CountryCodeDropdown = () => {
+const CountryCodeDropdown = ({ register, error: countryCodeError}) => {
   const { data, loading, error } = useCountriesInfo()
 
   const renderOptions = data.map((country) => (
@@ -15,6 +16,7 @@ const CountryCodeDropdown = () => {
   return (
     <div className="relative w-full">
       <select
+        {...register('countryCode')}
         className="
           w-full
           h-12
@@ -36,11 +38,12 @@ const CountryCodeDropdown = () => {
           ease-in-out
           cursor-pointer
           appearance-none
-        "
+        "  
       >
+        <option value="">Select country code</option>
         {loading && <option>Loading...</option>}
-        {error && <option>Error loading countries</option>}
-        {!loading && !error && renderOptions}
+        {(error || countryCodeError) && <option>Error loading countries</option>}
+        {!loading && !(error || countryCodeError) && renderOptions}
       </select>
 
       <span className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-purple-900 font-bold text-lg">
