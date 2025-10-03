@@ -13,7 +13,7 @@ const CountryCodeDropdown = () => {
   ))
 
   return (
-    <div className="relative w-80">
+    <div className="relative w-full">
       <select
         className="
           w-full
