@@ -1,5 +1,7 @@
 // app/page.tsx
 "use client";
+import CountryCodeDropdown from "@/components/CountryCodeDropdown";
+import useCountriesInfo from "@/hooks/useCountriesInfo";
 import { useRouter } from "next/navigation";
 
 export default function LandingPage() {
@@ -24,10 +26,11 @@ export default function LandingPage() {
           </button>
           <button
             onClick={() => router.push("/sign-up")}
-            className="px-6 py-3 rounded-xl bg-gradient-to-r from-blue-500 to-purple-500 text-white font-semibold shadow-lg hover:scale-105 transition-transform"
+            className="px-6 py-3 rounded-xl bg-white/20 text-white font-semibold shadow-lg hover:scale-105 transition-transform"
           >
             Sign Up
           </button>
+          <CountryCodeDropdown />
         </div>
       </section>
   );

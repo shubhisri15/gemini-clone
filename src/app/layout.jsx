@@ -29,7 +29,7 @@ export default function RootLayout({ children }) {
           </div>
           {children}
           <footer className="absolute bottom-6 text-sm text-gray-500">
-            © {new Date().getFullYear()} Kuvaka Tech — Gemini Clone | Built by Shubhi Srivastava
+            © {new Date().getFullYear()} ConverzAI (Gemini Clone) | Built by Shubhi Srivastava
           </footer>
         </main>
       </body>
