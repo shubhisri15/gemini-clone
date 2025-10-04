@@ -59,16 +59,31 @@ const UserDashboard = () => {
         <div className="w-1/2 h-96 rounded-xl p-4 overflow-y-auto flex flex-col gap-2">
           {messages.map((msg, i) => (
             <div
-              key={i}
-              className={`px-4 py-2 rounded-lg max-w-[80%] ${
-                msg.sender === 'user'
-                  ? 'self-end bg-purple-500 text-white'
-                  : 'self-start bg-gray-200 text-gray-800'
-              }`}
+                key={i}
+                className={`flex flex-col max-w-[80%] mb-4 group ${
+                msg.sender === 'user' ? 'self-end' : 'self-start'
+                }`}
             >
-              {msg.text}
+                {/* Message box */}
+                <div
+                className={`px-4 py-2 rounded-lg ${
+                    msg.sender === 'user' ? 'bg-purple-500 text-white' : 'bg-gray-200 text-gray-800'
+                }`}
+                >
+                {msg.text}
+                </div>
+
+                {/* Copy button below the message div */}
+                <div className="mt-1 opacity-0 group-hover:opacity-100 transition">
+                <button
+                    onClick={() => navigator.clipboard.writeText(msg.text)}
+                    className="text-xs text-gray-600 bg-white rounded px-2 py-1 shadow"
+                >
+                    Copy
+                </button>
+                </div>
             </div>
-          ))}
+            ))}
           <div ref={messagesEndRef} />
         </div>
       )}
