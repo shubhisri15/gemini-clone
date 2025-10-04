@@ -9,7 +9,7 @@ const CountryCodeDropdown = ({ register, error: countryCodeError}) => {
 
   const renderOptions = data.map((country) => (
     <option key={country.id} value={country.dialCode}>
-      {`[${country.dialCode}] - ${country.name}`}
+      {`${country.name} - [${country.dialCode}]`}
     </option>
   ))
 

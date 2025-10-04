@@ -22,21 +22,25 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {/* FIX: Set main to flex, ensure it takes full height. */}
-        <main className="min-h-screen flex flex-col items-center bg-gradient-to-b from-gray-950 via-gray-900 to-black text-white relative overflow-hidden">
-          {/* ... Background effects ... */}
-          
-          {/* FIX: This wrapper MUST take up the full available space (flex-1) 
-                     and have padding at the bottom (pb-16) to clear the fixed footer. */}
-          <div className='relative z-50 w-full flex-1 pb-16'> 
+        <main className="h-screen w-full flex flex-col items-center bg-gradient-to-b from-gray-950 via-gray-900 to-black text-white relative overflow-hidden">
+          {/* Background effects */}
+          <div className="absolute inset-0 pointer-events-none z-0 h-[80vh]">
+            <div className="absolute -top-40 -left-40 w-96 h-96 bg-blue-500/30 rounded-full blur-3xl animate-pulse"></div>
+            <div className="absolute -bottom-40 -right-40 w-96 h-96 bg-purple-500/30 rounded-full blur-3xl animate-pulse"></div>
+          </div>
+
+          {/* Main content area (takes full height, no scroll clipping) */}
+          <div className="relative z-10 flex-1 w-full">
             {children}
           </div>
-          
-          {/* FIX: Footer remains fixed */}
-          <footer className="fixed bottom-6 text-sm text-gray-500 w-full text-center">
+
+          {/* Footer (still visible, doesn't push layout up) */}
+          <footer className="fixed bottom-2 text-xs text-gray-500 w-full text-center z-20">
             © {new Date().getFullYear()} ConverzAI (Gemini Clone) | Built by Shubhi Srivastava
           </footer>
         </main>
+
+
       </body>
     </html>
   );

@@ -45,7 +45,10 @@ const SignupForm = () => {
       // 3. Complete login and redirect [cite: 4]
       login(userData)
       // Show success toast [cite: 36]
-      router.push('/dashboard') // Redirect to the dashboard
+      setTimeout(() => {
+        router.push('/dashboard')
+      }, 5000)
+       // Redirect to the dashboard
   }
 
   if (showOtp) {
@@ -53,7 +56,6 @@ const SignupForm = () => {
         <OTPForm 
           size={6} 
           onSuccess={onOtpSuccess}
-          phoneNumber={userData.phoneNumber}
         />
     )
   }

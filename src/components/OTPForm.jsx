@@ -1,7 +1,7 @@
 import { useRouter } from 'next/navigation'
 import React, { useRef, useState } from 'react'
 
-const OTPForm = ({ size }) => {
+const OTPForm = ({ size, onSuccess }) => {
   const [otp, setOtp] = useState(Array.from({ length: size }, () => ''))
   const [verifying, setVerifying] = useState(false)
   const inputsRef = useRef([])
@@ -30,11 +30,8 @@ const OTPForm = ({ size }) => {
   const verifyOtp = (e) => {
     e.preventDefault()
     setVerifying(true)
-
-    setTimeout(() => {
-      router.push('/dashboard')
-      setVerifying(false)
-    }, 3000)  
+    onSuccess() 
+    setVerifying(false)
   }
 
   const otpInputs = otp.map((_, i) => (
