@@ -22,15 +22,15 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <main className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-gray-950 via-gray-900 to-black text-white relative overflow-hidden">
+        <main className="min-h-screen flex flex-col items-center bg-gradient-to-b from-gray-950 via-gray-900 to-black text-white relative overflow-hidden">
           <div className="absolute inset-0">
             <div className="absolute -top-40 -left-40 w-96 h-96 bg-blue-500/30 rounded-full blur-3xl animate-pulse"></div>
             <div className="absolute -bottom-40 -right-40 w-96 h-96 bg-purple-500/30 rounded-full blur-3xl animate-pulse"></div>
           </div>
-          <div className='relative z-50'>
+          <div className='relative z-50 flex flex-col items-center min-h-screen'>
             {children}
           </div>
-          <footer className="absolute bottom-6 text-sm text-gray-500">
+          <footer className="fixed bottom-6 text-sm text-gray-500 w-full text-center">
             © {new Date().getFullYear()} ConverzAI (Gemini Clone) | Built by Shubhi Srivastava
           </footer>
         </main>
